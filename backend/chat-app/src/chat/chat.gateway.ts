@@ -15,7 +15,7 @@ export class ChatGateway
   implements OnGatewayConnection, OnGatewayDisconnect, OnGatewayInit
 {
   @WebSocketServer()
-  server: Server;
+  server!: Server;
 
   afterInit(server: Server) {
     console.log('connection start');
@@ -27,7 +27,6 @@ export class ChatGateway
   }
   handleConnection(client: Socket, ...args: any[]) {
     client.emit('disconnected', { connection: false });
-    client.disconnect();
     throw new Error('Method not implemented.');
   }
   @SubscribeMessage('message')
